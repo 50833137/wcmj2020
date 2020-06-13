@@ -1,0 +1,193 @@
+<h1>主頁</h1>
+<p><a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a><span> </span>是一套利用 Python 解譯程式語言所編寫的網際內容管理系統, 使用者可以用來建立動態網站, 靜態網站, 網誌與網際簡報系統.</p>
+<p>程式語言就其執行的方式, 可以分為編譯式與解譯式等兩種.</p>
+<p>編譯式語言例如: C 程式語言</p>
+<p>解譯式語言例如: Python 程式語言</p>
+<p>編寫程式語言是工程師與電腦溝通的途徑之一, 工程師編寫計算機程式在電腦上執行, 可以透過電腦強大與重複的運算能力來解決問題.</p>
+<p>CMSiMDE 就是工程師希望將各種與產品開發的過程資料, 存放在網站上, 除了可用於工程師之間的溝通外, 還能夠將產品開發的細節, 或者特定工具的使用詳細記錄, 以作為往後的參考.</p>
+<h4>如何使用 CMSiMDE</h4>
+<p>(1) 以子模組的方式使用 CMSiMDE</p>
+<p>將 Github 倉儲 git clone 到近端工作區之後, 可以利用 git submodule add 指令將遠端倉儲中的 CMSiMDE 程式碼納為倉儲中的 cmsimde 子目錄, 並且保持與遠端原始碼的版次關聯 (也就是能夠指定採用遠端特定版本的 CMSiMDE 程式碼).</p>
+<p>好處: 子模組可以與遠端官方的倉儲保持關聯, 一旦 CMSiMDE 更新版本, 使用者可以利用 git pull 直接拉下遠端 CMSiMDE 的最新程式碼.</p>
+<p>壞處: 使用者若要 git clone 遠端的倉儲至近端, 需要加上 --recurse-submodules 選項</p>
+<p>(2) 不以子模組的方式使用 CMSiMDE</p>
+<p>假如不需要保持與遠端 CMSiMDE 倉儲特定版次的關聯性, 可以直接將 CMSiMDE 倉儲中的檔案, 直接放入 cmsimde 目錄, 並將其中 up_dir 的內容複製到希望建立網頁的倉儲主目錄中即可.</p>
+<p>好處: 使用者可以直接使用 git clone 指令, 拉下遠端倉儲的所有資料.</p>
+<p>壞處: 失去與遠端 CMSiMDE 倉儲的關聯, 假如要使用最新改版後的 CMSiMDE 原始碼, 必須另外 git clone 然後再取代倉儲中 cmsimde 的所有檔案.</p>
+<p></p>
+<h1>About</h1>
+<p>此內容管理系統以 <a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> 作為 submodule 運作, 可以選定對應的版本運作, cmsimde 可以持續改版, 不會影響之前設為 submodule, 使用舊版 cmsimde 模組的內容管理相關運作.</p>
+<h4>利用 cmsimde 建立靜態網誌方法:</h4>
+<p>1. 在 github 建立倉儲, git clone 到近端</p>
+<p>2. 參考 <a href="https://github.com/mdecourse/newcms">https://github.com/mdecourse/newcms</a>, 加入除了 cmsimde 目錄外的所有內容</p>
+<p>以 git submodule add <a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> cmsimde</p>
+<p>建立 cmsimde 目錄, 並從 github 取下子模組內容.</p>
+<p>3.在近端維護時, 更換目錄到倉儲中的 cmsimde, 以 python wsgi.py 啟動近端網際伺服器.</p>
+<p>動態內容編輯完成後, 以 generate_pages 轉為靜態內容, 以 git add commit 及 push 將內容推到遠端.</p>
+<p>4. 之後若要以 git clone 取下包含 submodule 的所有內容, 執行:</p>
+<p>git clone --recurse-submodules<span> </span><a href="https://github.com/mdecourse/newcms.git">https://github.com/mdecourse/newcms.git</a></p>
+<p></p>
+<h1>Develop</h1>
+<p><a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> 的開發, 可以在一個目錄中放入 cmsimde, 然後將 up_dir 中的內容放到與 cmsimde 目錄同位階的地方, 使用 command 進入 cmsimde 目錄, 執行 python wsgi.py, 就可以啟動, 以瀏覽器 https://localhost:9443 就可以連接, 以 admin 作為管理者密碼, 就可以登入維護內容.</p>
+<p>cmsimde 的開發採用 Leo Editor, 開啟 cmsimde 目錄中的 cmsimde.leo 就可以進行程式修改, 結束後, 若要保留網際內容, 只要將 cmsimde 外部的內容倒回 up_dir 目錄中即可後續對 cmsimde 遠端倉儲進行改版.</p>
+<p>init.py 位於  up_dir 目錄, 可以設定 site_title 與 uwsgi 等變數.</p>
+<p>各分組學員可以就以下常見的網際內容, 以組員分工的方式深入研究特定主題, 然後再將結果納入 CMSiMDE 網站, 網誌, 簡報 與 Blogger 網誌內容.</p>
+<p></p>
+<h1>有關本網站</h1>
+<p>這門課程在教導學員如何利用網際環境管理與工程應用相關的內容管理.</p>
+<p>總共使用兩套網際內容管理系統:</p>
+<p><a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a></p>
+<p><a href="https://www.blogger.com/">https://www.blogger.com/</a></p>
+<p>Please use your student number to<span> </span><a href="https://github.com/join">register a github account</a>.</p>
+<p>請利用學號註冊一個 Github 帳號</p>
+<p>Repository (倉儲):<span> </span><a href="https://github.com/mdecourse/wcmj2020">https://github.com/mdecourse/wcmj2020</a> </p>
+<p>Project (專案):<span> </span><a href="https://github.com/mdecourse/wcmj2020/projects/1">https://github.com/mdecourse/wcmj2020/projects/1</a> </p>
+<p>Gitter (討論區):<span> </span><a href="https://gitter.im/mdecourse/wcmj2020">https://gitter.im/mdecourse/wcmj2020</a> </p>
+<p>Web site (網站): <a href="https://mde.tw/wcmj2020">https://mde.tw/wcmj2020</a> </p>
+<p>Blog (網誌):<span> </span><a href="https://mde.tw/wcmj2020/blog">https://mde.tw/wcmj2020/blog</a> </p>
+<p>Presentation (簡報):<span> </span><a href="https://mde.tw/wcmj2020/reveal">https://mde.tw/wcmj2020/reveal</a> </p>
+<p></p>
+<p></p>
+<h1>分組</h1>
+<h4>亂數分組:</h4>
+<p><a href="https://mde.tw/wcmj2020/downloads/2020spring_wcmj_1a_list.txt">https://mde.tw/wcmj2020/downloads/2020spring_wcmj_1a_list.txt</a> was taken from <a href="https://osa.nfu.edu.tw/">https://osa.nfu.edu.tw/</a> on Feb. 19, 2020.</p>
+<p>The most updated list: <a href="http://s1.mde.nfu.edu.tw:8000/?semester=1082&amp;courseno=2418">http://s1.mde.nfu.edu.tw:8000/?semester=1082&amp;courseno=2418</a> </p>
+<p>semester: 1082</p>
+<p>courseno: 2418</p>
+<p>Under https protocol use port 7443, for http use port 8000.</p>
+<h2>分組結果</h2>
+<h4>常見的網際內容包含:</h4>
+<p>文字 (網誌與網站文字說明, 簡報文字敘述)</p>
+<p>數學方程式 (<a href="https://www.mathjax.org/">mathjax</a>)</p>
+<p>圖檔 (png, jpg, gif,<span> </span><a href="https://www.w3schools.com/html/html5_svg.asp">svg)</a></p>
+<p>動畫 (gif)<span> </span><img caption="false" height="72" src="http://mde.tw/wcmj2020/images/rabbit.gif" width="100"/></p>
+<p>音樂 (mp3 or<span> </span><a href="https://docstore.mik.ua/orelly/web2/audio/ch10_02.htm">midi</a>)</p>
+<p>影片 (embedded mp4)</p>
+<p>程式</p>
+<p><a href="https://www.w3schools.com/html/html5_canvas.asp">HTML5 Canvas</a><span> </span>(2d)</p>
+<p><a href="https://threejs.org/">Three.js</a><span> </span>(3D)</p>
+<p><a href="https://brython.info/">Brython</a></p>
+<p><a href="https://github.com/fengari-lua/fengari-web">fengari-web</a><span> </span>(Lua)</p>
+<p>Dart -&gt; Javascript</p>
+<p>==============================<br/>group 1<br/>Repository:<span> </span><a href="https://github.com/50833110/wcmj2020">50833110</a><span> </span>| Site:<span> </span><a href="https://50833110.github.io/wcmj2020">50833110</a><br/>Repository:<span> </span><a href="https://github.com/50833112/wcmj2020">50833112</a><span> </span>| Site:<span> </span><a href="https://50833112.github.io/wcmj2020">50833112</a><br/>Repository:<span> </span><a href="https://github.com/50833115/wcmj2020">50833115</a><span> </span>| Site:<span> </span><a href="https://50833115.github.io/wcmj2020">50833115</a><br/>Repository:<span> </span><a href="https://github.com/50833123/wcmj2020">50833123</a><span> </span>| Site:<span> </span><a href="https://50833123.github.io/wcmj2020">50833123</a><br/>Repository:<span> </span><a href="https://github.com/50833127/wcmj2020">50833127</a><span> </span>| Site:<span> </span><a href="https://50833127.github.io/wcmj2020">50833127</a><br/>Repository:<span> </span><a href="https://github.com/50833128/wcmj2020">50833128</a><span> </span>| Site:<span> </span><a href="https://50833128.github.io/wcmj2020">50833128</a><br/>Repository:<span> </span><a href="https://github.com/50833129/wcmj2020">50833129</a><span> </span>| Site:<span> </span><a href="https://50833129.github.io/wcmj2020">50833129</a><br/>Repository:<span> </span><a href="https://github.com/50833131/wcmj2020">50833131</a><span> </span>| Site:<span> </span><a href="https://50833131.github.io/wcmj2020">50833131</a><br/>Repository:<span> </span><a href="https://github.com/50833133/wcmj2020">50833133</a><span> </span>| Site:<span> </span><a href="https://50833133.github.io/wcmj2020">50833133</a><br/>Repository:<span> </span><a href="https://github.com/50833138/wcmj2020">50833138</a><span> </span>| Site:<span> </span><a href="https://50833138.github.io/wcmj2020">50833138</a><br/>==============================<br/>group 2<br/>Repository:<span> </span><a href="https://github.com/50833101/wcmj2020">50833101</a><span> </span>| Site:<span> </span><a href="https://50833101.github.io/wcmj2020">50833101</a><br/>Repository:<span> </span><a href="https://github.com/50833107/wcmj2020">50833107</a><span> </span>| Site:<span> </span><a href="https://50833107.github.io/wcmj2020">50833107</a><br/>Repository:<span> </span><a href="https://github.com/50833108/wcmj2020">50833108</a><span> </span>| Site:<span> </span><a href="https://50833108.github.io/wcmj2020">50833108</a><br/>Repository:<span> </span><a href="https://github.com/50833111/wcmj2020">50833111</a><span> </span>| Site:<span> </span><a href="https://50833111.github.io/wcmj2020">50833111</a><br/>Repository:<span> </span><a href="https://github.com/50833117/wcmj2020">50833117</a><span> </span>| Site:<span> </span><a href="https://50833117.github.io/wcmj2020">50833117</a><br/>Repository:<span> </span><a href="https://github.com/50833119/wcmj2020">50833119</a><span> </span>| Site:<span> </span><a href="https://50833119.github.io/wcmj2020">50833119</a><br/>Repository:<span> </span><a href="https://github.com/50833122/wcmj2020">50833122</a><span> </span>| Site:<span> </span><a href="https://50833122.github.io/wcmj2020">50833122</a><br/>Repository:<span> </span><a href="https://github.com/50833126/wcmj2020">50833126</a><span> </span>| Site:<span> </span><a href="https://50833126.github.io/wcmj2020">50833126</a><br/>Repository:<span> </span><a href="https://github.com/50833130/wcmj2020">50833130</a><span> </span>| Site:<span> </span><a href="https://50833130.github.io/wcmj2020">50833130</a><br/>Repository:<span> </span><a href="https://github.com/50833134/wcmj2020">50833134</a><span> </span>| Site:<span> </span><a href="https://50833134.github.io/wcmj2020">50833134</a><br/>==============================<br/>group 3<br/>Repository:<span> </span><a href="https://github.com/50833104/wcmj2020">50833104</a><span> </span>| Site:<span> </span><a href="https://50833104.github.io/wcmj2020">50833104</a><br/>Repository:<span> </span><a href="https://github.com/50833106/wcmj2020">50833106</a><span> </span>| Site:<span> </span><a href="https://50833106.github.io/wcmj2020">50833106</a><br/>Repository:<span> </span><a href="https://github.com/50833113/wcmj2020">50833113</a><span> </span>| Site:<span> </span><a href="https://50833113.github.io/wcmj2020">50833113</a><br/>Repository:<span> </span><a href="https://github.com/50833114/wcmj2020">50833114</a><span> </span>| Site:<span> </span><a href="https://50833114.github.io/wcmj2020">50833114</a><br/>Repository:<span> </span><a href="https://github.com/50833116/wcmj2020">50833116</a><span> </span>| Site:<span> </span><a href="https://50833116.github.io/wcmj2020">50833116</a><br/>Repository:<span> </span><a href="https://github.com/50833118/wcmj2020">50833118</a><span> </span>| Site:<span> </span><a href="https://50833118.github.io/wcmj2020">50833118</a><br/>Repository:<span> </span><a href="https://github.com/50833120/wcmj2020">50833120</a><span> </span>| Site:<span> </span><a href="https://50833120.github.io/wcmj2020">50833120</a><br/>Repository:<span> </span><a href="https://github.com/50833125/wcmj2020">50833125</a><span> </span>| Site:<span> </span><a href="https://50833125.github.io/wcmj2020">50833125</a><br/>Repository:<span> </span><a href="https://github.com/50833140/wcmj2020">50833140</a><span> </span>| Site:<span> </span><a href="https://50833140.github.io/wcmj2020">50833140</a><br/>Repository:<span> </span><a href="https://github.com/50833141/wcmj2020">50833141</a><span> </span>| Site:<span> </span><a href="https://50833141.github.io/wcmj2020">50833141</a><br/>==============================<br/>group 4<br/>Repository:<span> </span><a href="https://github.com/50833102/wcmj2020">50833102</a><span> </span>| Site:<span> </span><a href="https://50833102.github.io/wcmj2020">50833102</a><br/>Repository:<span> </span><a href="https://github.com/50833103/wcmj2020">50833103</a><span> </span>| Site:<span> </span><a href="https://50833103.github.io/wcmj2020">50833103</a><br/>Repository:<span> </span><a href="https://github.com/50833105/wcmj2020">50833105</a><span> </span>| Site:<span> </span><a href="https://50833105.github.io/wcmj2020">50833105</a><br/>Repository:<span> </span><a href="https://github.com/50833109/wcmj2020">50833109</a><span> </span>| Site:<span> </span><a href="https://50833109.github.io/wcmj2020">50833109</a><br/>Repository:<span> </span><a href="https://github.com/50833121/wcmj2020">50833121</a><span> </span>| Site:<span> </span><a href="https://50833121.github.io/wcmj2020">50833121</a><br/>Repository:<span> </span><a href="https://github.com/50833124/wcmj2020">50833124</a><span> </span>| Site:<span> </span><a href="https://50833124.github.io/wcmj2020">50833124</a><br/>Repository:<span> </span><a href="https://github.com/50833135/wcmj2020">50833135</a><span> </span>| Site:<span> </span><a href="https://50833135.github.io/wcmj2020">50833135</a><br/>Repository:<span> </span><a href="https://github.com/50833136/wcmj2020">50833136</a><span> </span>| Site:<span> </span><a href="https://50833136.github.io/wcmj2020">50833136</a><br/>Repository:<span> </span><a href="https://github.com/50833137/wcmj2020">50833137</a><span> </span>| Site:<span> </span><a href="https://50833137.github.io/wcmj2020">50833137</a><br/>Repository:<span> </span><a href="https://github.com/50833139/wcmj2020">50833139</a><span> </span>| Site:<span> </span><a href="https://50833139.github.io/wcmj2020">50833139</a></p>
+<p></p>
+<h2>實習項目</h2>
+<h4>第八週</h4>
+<p>請重新下載<span> </span><a href="https://drive.google.com/open?id=1xDTDfcHU18ipqZNbOufMkSZqibqNeL2T">wcmj2020_tool.7z</a>, 檔案大小為 435 MB, 解開壓縮後為 1.8 GB (其中包括 Mypaint, Dia 與 OBS 等)</p>
+<p>分別利用 ShareX 與 OBS 錄製電腦畫面操作, 說明如何在個人的網站上新增一個標題為"第八週實習"的 H1 頁面, 然後將兩段影片上傳至個人的 youtube 帳號下, 並 embedded 至該頁面中.</p>
+<h4>第九週</h4>
+<p>請從電腦與網路頁面中, 擷取資料中的圖文資料, 在標題為"第九週實習“的 H1 頁面下, 分別製作兩個 H2 頁面:</p>
+<p>電腦軟硬體簡介</p>
+<p>與</p>
+<p>網路架構與設定簡介</p>
+<p>課堂上將利用<span> </span><a href="https://ethercalc.net/">Ethercalc</a><span> </span>擷取各學員的期中自評成績.</p>
+<p></p>
+<h1>主題</h1>
+<h4>Google Blogger</h4>
+<p>Login to your gm email account and download<span> </span><a href="https://drive.google.com/file/d/12Ypf02FVP9l7a9ufZfhRicN-rzCKkAf5/view?usp=sharing">2010_BeginningGoogleBlogger.pdf</a></p>
+<h4>WCM</h4>
+<p>Login to your gm email account and download<span> </span><a href="https://drive.google.com/file/d/1gLb9_6FEv58wVX2uShG_3sgUseFEcH_y/view?usp=sharing">2020wcm_topic_1.pdf</a>.</p>
+<p>What is a content management system?</p>
+<p>Analyzing your information life cycle.</p>
+<p>Overview of enterprise content management.</p>
+<h4><span>Git</span></h4>
+<p><span>Login to your gm email account and download<span> </span><a href="https://drive.google.com/file/d/1YkLWsDVRlScSuSBQv2Aa1JSjvbydJli-/view?usp=sharing">IntroductionToVersionControlAndGit.pdf</a>.</span></p>
+<p><span>What is version control?</span></p>
+<p><span>Git installation and setup.</span></p>
+<p><span>Git getting started.</span></p>
+<p><span>Commits and remote git.</span></p>
+<h4><span>Github</span></h4>
+<p><span>Login to your gm email account and download<span> </span><a href="https://drive.google.com/file/d/1vnkDLW1cg8hKEMUdjDstvWqiS4R1n3IC/view?usp=sharing">GithubPrimer.pdf</a></span></p>
+<p><span>Login to your gm email account and download<span> </span><a href="https://drive.google.com/file/d/18MiM_d95ustohAqoUfx-gc-2dUE9Av0n/view?usp=sharing">ConflictsGUIToolAdvGit.pdf</a></span></p>
+<h2><span>W1-W5</span></h2>
+<p>介紹有關網際網路管理的一些專有名詞及課程大綱<br/>電腦種類<br/>super computer<br/><br/></p>
+<p><span></span></p>
+<p><span></span></p><h2>倉儲與網站</h2>
+<ol>
+<li>請重新下載<span> </span><a href="https://drive.google.com/open?id=1xDTDfcHU18ipqZNbOufMkSZqibqNeL2T">wcmj2020_tool.7z</a>, 檔案大小為 435 MB, 解開壓縮後為 1.8 GB (其中包括 Mypaint, Dia 與 OBS 等).</li>
+<li>登入 github.com 建立 Github 倉儲, 直接新增 README.md 檔案.</li>
+<li>將所建立的倉儲 git clone 到近端.</li>
+<li>git submodule add<span> </span><a href="https://github.com/mdecourse/cmsimde.git">https://github.com/mdecourse/cmsimde.git</a> cmsimde</li>
+<li>在近端維護動態網站, 轉為靜態後 git add commit push</li>
+</ol>
+<p>以下請各學員分別利用 ShareX 與 OBS 拍攝建立與維護個人倉儲與網站的影片, 完成後將影片 embed 入個人網站的 W8 頁面中.</p>
+<p></p>
+<h2>W6</h2>
+<h4>Online education</h4>
+<p>線上直播: Youtube + Portable OBS</p>
+<p>線上開會:<span> </span><a href="https://meet.google.com/">https://meet.google.com</a> </p>
+<hr/>
+<h4>讓手機可以利用電腦熱點上網</h4>
+<p>採用 <a href="https://www.tp-link.com/us/home-networking/usb-adapter/tl-wn725n/">https://www.tp-link.com/us/home-networking/usb-adapter/tl-wn725n/</a></p>
+<p>將此一 USB Wifi adapter 連接電腦後, 若網路為 IPv4 協定時, 可以透過"設定 -&gt; 網路和網際網路 -&gt; 行動熱點", 選擇開啟並編輯"網路名稱與網路密碼"後, 讓至多 8 台手機透過熱點連線上網.</p>
+<p>但是因為目前 Windows 10 並<a href="https://answers.microsoft.com/en-us/windows/forum/all/support-ipv6-in-mobile-hotspot-network-sharing/8801ea57-c6dc-4c10-afe6-192879a85835">未提供 IPv6 網路協定下的網路熱點功能</a>, 因此在純 IPv6 網路協定下無法使用"行動熱點"服務.</p>
+<hr/>
+<p>利用手機鏡頭當作 webcam:</p>
+<p>Android:<span> </span><a href="https://www.digitalcitizen.life/turn-android-smartphone-webcam-windows">https://www.digitalcitizen.life/turn-android-smartphone-webcam-windows</a> <br/>iPhone:<span> </span><a href="https://www.makeuseof.com/tag/use-your-iphone-as-a-webcam-heres-how-ios/">https://www.makeuseof.com/tag/use-your-iphone-as-a-webcam-heres-how-ios/</a> </p>
+<h4>需要 clone 個人倉儲時:</h4>
+<p>git clone --recurse-submodules 倉儲_url.git</p>
+<p>例如: git clone --recurse-submodules<span> </span><a href="https://github.com/mdecourse/wcmj2020.git">https://github.com/mdecourse/wcmj2020.git</a></p>
+<p></p>
+<h2>W8</h2>
+<p>請重新下載<span> </span><a href="https://drive.google.com/open?id=1xDTDfcHU18ipqZNbOufMkSZqibqNeL2T">wcmj2020_tool.7z</a>, 檔案大小為 435 MB, 解開壓縮後為 1.8 GB (其中包括 Mypaint, Dia 與 OBS 等).</p>
+<p>學會利用 ShareX 與 OBS 拍攝螢幕操作影片, 並將個人維護倉儲與網站的過程影片放入個人網站中.</p>
+<p></p>
+<h1>w9</h1>
+<p></p>
+<h2>電腦軟硬體簡介</h2>
+<div class="kvgmc6g5 cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Central processing unit CPU</strong></div>
+<div dir="auto"><strong>中央處理器</strong></div>
+<div dir="auto">是電腦的主要裝置之一，功能主要是解釋電腦指令以及處理電腦軟件中的數據，也可以說是一部電腦的心臟</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Arithmetic logic unit ALU</strong></div>
+<div dir="auto"><strong>算數邏輯單位</strong></div>
+<div dir="auto">是中央處理器的執行單元，是所有中央處理器的核心組成部分，主要功能是進行2進位的算數運算</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Control unit CU</strong></div>
+<div dir="auto">有時為CPU的一部分，有時安裝於CPU外部，負責指揮CPU工作，通過該1裝置的運行來控制其他裝置的活動</div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto">記憶體：</div>
+<div dir="auto"></div>
+<div dir="auto"><strong>random access memory RAM</strong></div>
+<div dir="auto">是與CPU直接交換數據的內部儲存器，他可以隨時讀寫，而且速度很快</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Read only memory ROM</strong></div>
+<div dir="auto">是一種半導體記憶體，特性是一旦儲存資料就無法再改變或刪除，內容不會因為關閉電源而消失</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto">電腦的種類:</div>
+<div dir="auto"></div>
+<div dir="auto"><strong>Personal computer</strong><span> </span>個人電腦</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Workstation</strong> 工作站,比個人電腦更高級一些的電腦</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Mini computer</strong><span> </span>迷你電腦，規格介於大型電腦與個人電腦之間</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Mainframe</strong><span> </span>伺服器主機</div>
+<div dir="auto"></div>
+</div>
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"><strong>Super computer</strong><span> </span>超級電腦</div>
+<div dir="auto"></div>
+<div dir="auto">
+<h2>網路架構與設定簡介</h2>
+<p></p>
+<p><img alt="" height="381" src="/images/95347021_843620279462124_8767618437007540224_n.jpg" width="280"/></p>
+</div>
+</div>
+<p></p>
