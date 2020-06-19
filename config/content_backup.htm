@@ -189,7 +189,136 @@
 <div dir="auto"></div>
 <div dir="auto">
 <h2>網路架構與設定簡介</h2>
-<h2>上課筆記</h2>
+<h3>上課筆記</h3>
 <p><img alt="" height="280" src="/images/94961203_283360872663851_2942575492848418816_n.jpg" width="373"/><img alt="" height="381" src="/images/95347021_843620279462124_8767618437007540224_n.jpg" width="280"/><img alt="" height="280" src="/images/95810719_1635354166615900_1487991703167041536_n.jpg" width="373"/></p>
 <p><img alt="" height="381" src="/images/95347021_843620279462124_8767618437007540224_n.jpg" width="280"/></p>
-<p></p></div></div>
+</div>
+</div>
+<h2>W12-13</h2>
+<p>1. 將 CMSiMDE 中的 Pelican Blog 內容同步到 Google Blogger 的目的, 在讓網際內容管理系統中的網誌原始資料修改過程具備版次, 而且可同時將網誌出版在 Github Pages 與 Google Blogger 中, 讓網際內容的保存較具有永續性.</p>
+<p>32.Google Blogger 中的網誌系統各有獨立 ID, 這裡稱為 blog_id, 而網誌中的每一篇文章各有獨立 ID, 這裡稱為 post_id.</p>
+<p>3. Google Blogger 管理者登入後, 在 Settings - Permissions 項下, 允許 invite more authors, 而且在 Settings - Permissions - Blog admins and Authors 項下, 允許將所邀請共同寫作的 Author 提升為 Admin 管理者.</p>
+<p>4. Google 的每一個 API 都允許使用者建立以 Oauth2 為基礎的登入使用授權憑證, 配合所啟動的各種 API 程式庫, 一旦啟用並登入後, 可以透過程式方法, 呼叫程式庫功能, 對各種 Google 所提供的服務 (Blogger, Drive, Gmail, Calendar 等) 新增內容. 以 Blogger 而言, 只要使用者被設為某一網誌的共同作者, 即擁有在該網誌新增或編輯自己所發布的網誌文章權限.</p>
+<p>5.使用者登入 Google 帳號後, 在<span> </span><a href="https://console.developers.google.com/">https://console.developers.google.com</a><span> </span>中所建立的 Oauth2 client ID, 可以下載存為 client_secrets.json 檔案.</p>
+<p>6. client_secrets.json 檔案則可以透過下列程式, 轉換為 credential_token.dat, 使用者針對特定啟用的 API 程式庫, 可以在讀取 credential_token.dat 的情況下, 取得與登入 Gmail 帳號相同的使用授權, 直接在擁有權限的 blog_id 中新增特定的文章.並以特定的 post_id 辨識</p>
+<h2>W14</h2>
+<h3>新增blogger 文章</h3>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">'''
+用來測試 Google Blogger Python API 新增文章程式
+ 
+pip install google-api-python-client oauth2client
+ 
+'''
+ 
+import sys
+from oauth2client import client
+from googleapiclient import sample_tools
+ 
+argv = ""
+# 認證並建立服務
+service, flags = sample_tools.init(
+  argv, 'blogger', 'v3', __doc__, './client_secrets.json',
+  scope='https://www.googleapis.com/auth/blogger')
+ 
+try:
+    users = service.users()
+    # 取得使用者 profile 資料
+    user = users.get(userId='self').execute()
+    print('網誌名稱: %s' % user['displayName'])
+    blogs = service.blogs()
+    # 取得使用者所建立網誌名稱
+    blogs = blogs.listByUser(userId='self').execute()
+    for blog in blogs['items']:
+        print(blog['name'], blog['url'])
+    posts = service.posts()
+    # 新增網誌 post 時, 需要 blog id
+ 
+    body = {
+    "kind": "blogger#post",
+    "id": "123",
+    "title": "透過 Python 程式新增網誌文章1",
+    "content":"使用 Google Blogger API 可以利用程式新增網誌文章內容1"
+    }
+     
+    insert = posts.insert(blogId='123', body=body)
+    posts_doc = insert.execute()
+    print(posts_doc)
+     
+    '''
+    # 更新網誌文章時的 body
+    body = {
+    "kind": "blogger#post",
+    "title": "透過 Python 程式修改網誌文章2",
+    "content": "使用 Google Blogger API 可以利用程式修改網誌文章內容. http://mde.tw/cd2019"
+    }
+     
+    update = posts.update(blogId="123", postId="456", body=body, publish=True)
+    update_doc = update.execute()
+    print(update_doc)
+    '''
+except(client.AccessTokenRefreshError):
+    print("error")
+</pre>
+<p></p>
+<h3>編輯blogger文章</h3>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">'''
+用來測試 Google Blogger Python API 編輯文章程式
+ 
+pip install google-api-python-client oauth2client
+ 
+'''
+ 
+import sys
+from oauth2client import client
+from googleapiclient import sample_tools
+ 
+argv = ""
+# 認證並建立服務
+service, flags = sample_tools.init(
+  argv, 'blogger', 'v3', __doc__, './client_secrets.json',
+  scope='https://www.googleapis.com/auth/blogger')
+ 
+try:
+    users = service.users()
+    # 取得使用者 profile 資料
+    user = users.get(userId='self').execute()
+    print('網誌名稱: %s' % user['displayName'])
+    blogs = service.blogs()
+    # 取得使用者所建立網誌名稱
+    blogs = blogs.listByUser(userId='self').execute()
+    for blog in blogs['items']:
+        print(blog['name'], blog['url'])
+    posts = service.posts()
+    # 新增網誌 post 時, 需要 blog id
+ 
+    '''
+    body = {
+    "kind": "blogger#post",
+    "id": "123",
+    "title": "透過 Python 程式新增網誌文章1",
+    "content":"使用 Google Blogger API 可以利用程式新增網誌文章內容1"
+    }
+     
+    insert = posts.insert(blogId='123', body=body)
+    posts_doc = insert.execute()
+    print(posts_doc)
+    '''
+ 
+    # 更新網誌文章時的 body
+    body = {
+    "kind": "blogger#post",
+    "title": "透過 Python 程式修改網誌文章2",
+    "content": "使用 Google Blogger API 可以利用程式修改網誌文章內容. http://mde.tw/cd2019"
+    }
+     
+    update = posts.update(blogId="123", postId="456", body=body, publish=True)
+    update_doc = update.execute()
+    print(update_doc)
+ 
+except(client.AccessTokenRefreshError):
+    print("error")
+</pre>
+
+<div class="o9v6fnle cxmmr5t8 oygrvhab hcukyx3x c1et5uql">
+<div dir="auto"></div>
+</div>
